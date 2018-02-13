@@ -1,18 +1,18 @@
 <?php
 //	Rosgid Engine 2.0 - Конфигурационный файл подключение к базе данных.
 
-if ( !function_exists ('error') ) {
+//if ( !function_exists ('error') ) {
 	//	Функция вывода ошибок:
-	function error ($text) {
-		echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="ru"><head><meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>Rosgid Engine - Error!</title><link href="/css/error.css" rel="stylesheet" type="text/css"></head><body><div><h1>Rosgid Engine - Error!</h1><span>' . $text . '</span></div></body></html>';
-	}
-}
+//	function error ($text) {
+	//	echo '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html lang="ru"><head><meta http-equiv="content-type" content="text/html; charset=UTF-8"><title>Rosgid Engine - Error!</title><link href="/css/error.css" rel="stylesheet" type="text/css"></head><body><div><h1>Rosgid Engine - Error!</h1><span>' . $text . '</span></div></body></html>';
+	//}
+//}
 
 //	Проверка безапасного подключения файла:
-defined ('_ROSGID') or die ( error ('Error! #001 - Access Denide.') );
+//defined ('_ROSGID') or die ( error ('Error! #001 - Access Denide.') );
 
 //	Объявляем данные для подключения:
-$data_connection = array ('host' => 'localhost', 'login' => '', 'password' => '');
+$data_connection = array ('host' => 'localhost', 'login' => 'retynan1389', 'password' => '3JhoBR0o');
 
 $idg = new mysqli($data_connection['host'], $data_connection['login'], $data_connection['password'], 'rosgid_idg');
 $system = new mysqli($data_connection['host'], $data_connection['login'], $data_connection['password'], 'rosgid_system');
