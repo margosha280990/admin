@@ -12,7 +12,7 @@ if ( !function_exists ('error') ) {
 defined ('_ROSGID') or die ( error ('Error! #001 - Access Denide.') );
 
 //	Объявляем данные для подключения:
-$data_connection = array ('host' => 'localhost', 'login' => 'retynan1389', 'password' => '3JhoBR0o');
+$data_connection = array ('host' => 'localhost', 'login' => '', 'password' => '');
 
 $idg = new mysqli($data_connection['host'], $data_connection['login'], $data_connection['password'], 'rosgid_idg');
 $system = new mysqli($data_connection['host'], $data_connection['login'], $data_connection['password'], 'rosgid_system');
