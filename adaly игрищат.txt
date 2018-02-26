@@ -1,0 +1,160 @@
+[exec]
+if(isset($_COOKIE['rosgid_login'])){
+include 'db.php';
+
+$cook=$_COOKIE['rosgid_login'];
+$cook = array_shift(explode("-", $cook));
+$select_user = $idg->query("SELECT distinct o.id as id, u.idg_name as idg_name, o.orgs_ls orgs_ls, o.orgs_compname as orgs_compname, o.orgs_username as orgs_username, o.orgs_email as orgs_email,
+o.orgs_phone as orgs_phone, o.orgs_orgscode as orgs_orgscode
+ FROM `idg_users` as u, `idg_orgs` as o
+ WHERE u.`idg_usercode` = '" . $cook . "' and u.idg_usercode = o.orgs_usercode");
+
+while($fetch_user = $select_user->fetch_assoc()){
+$name= $fetch_user['idg_name'];
+$code = $fetch_user['orgs_orgscode'];
+$ids = $fetch_user['id'];
+/*$ue = $fetch_user['ue'];
+$uec = $fetch_user['uec'];
+$osn= $fetch_user['osn'];
+$envd= $fetch_user['envd'];
+if($ue == 'on') {$ue = 'УСН доходы';}
+elseif($ue == '1') {$ue = '';}
+elseif($ue == '') {$ue = '';}
+if($uec == 'on') {$uec = 'УСН доходы минус расходы';}
+elseif($uec == '1') {$uec = '';}
+elseif($uec == '') {$uec = '';}
+if($osn == 'on') {$osn = 'ОСН';}
+elseif($osn == '1') {$osn = '';}
+elseif($osn == '') {$osn = '';}
+if($envd == 'on') {$envd = 'ЕНВД';}
+elseif($envd == '1') {$envd = '';}
+elseif($envd == '') {$envd = '';}*/
+
+
+echo '<div class="shell"><h3 class="text-thin" style="font-size: 15px;">Добро пожаловать в личный кабинет, <i><b>' .$name.'</b></i></h3>';
+echo '<div class="panel panel-lg bg-primary bg-white-outline-btn text-center">
+<h5 class="text-thin">Список <span class="text-thin">моих компаний</span></h5>';
+
+
+echo'
+
+<div id="listOfnames"><h4><i id="name_org">'.$fetch_user['orgs_compname'].'</i><a style="cursor:pointer;" id="'.$ids.'" class="pole_table fool a-view-block" id="" data-view="0" onclick="slideBlock($(this), \'tableBux3\');output(id);vizibl($(this), \'tableBux3\');  return false;"> (Развернуть)</a></h4></div>
+<div class="comp" id="tableBux3">
+<div>Лицевой счет: <span id="lis_key">'.$fetch_user['orgs_ls'].'</span></div>
+<div>Генеральный директор: <span id="gen_dir">'.$fetch_user['orgs_username'].'</span></div>
+<div>E-mail: <span id="email">'.$fetch_user['orgs_email'].'</span></div>
+<div>Телефон: <span id="phone_number">'.$fetch_user['orgs_phone'].'</span></div>
+
+
+';
+
+echo '<h5 class="text-thin">Список <span class="text-thin">предоставляемых услуг</span></h5>';
+$usl=$dbbuh->query("SELECT * FROM rosgid_fina as fina WHERE fina.fin_orgscode='".$code."'");
+while($service = $usl->fetch_assoc()){
+echo '<div class="service">';
+echo '<div>Услуга: <span id="fin_a_name">'.$service['fin_service'].'</span></div>';
+echo '<div>Дата добавления услуги: <span id="fin_a_dateAdd">'.$service['fin_date_add'].' </span></div>';
+echo '<div>Стоимость: <span id="fin_a_price">'.$service['fin_price'].'</span></div><br>';
+echo '</div>'; //close class service
+}
+echo '
+<fieldset class="box box-primary"  id="tableBuxOrig" style="/*display: none;*/">
+				<legend>Таблица абонентских услуг для клиента</legend>
+			
+				<div class="box-body">
+					<div class="cron-main">
+			
+						<div id="tab_years">
+							<ul class="list_years" id="liYears">
+			
+							</ul>
+						</div>
+			
+						<div >
+							<table border="1px" class="tabRep">
+			
+								<tr >
+									<td rowspan="2" class="first_colum">Отчёт</td>
+									<td rowspan="2" class="second_colum">Тип</td>
+									<td colspan="12" class="fhrid_colum">Дата Сдачи Отчёта</td>
+								<tr>
+									<td class="month_colum">Янв</td>
+									<td class="month_colum">Фев</td>
+									<td class="month_colum">Март</td>
+									<td class="month_colum">Апр</td>
+									<td class="month_colum">Май</td>
+									<td class="month_colum">Июнь</td>
+									<td class="month_colum">Июль</td>
+									<td class="month_colum">Август</td>
+									<td class="month_colum">Сент</td>
+									<td class="month_colum">Окт</td>
+									<td class="month_colum">Нояб</td>
+									<td class="month_colum">Дек</td>
+								</tr>
+								</tr>
+			
+								<tr class="noActive"><td colspan="16">Налоговый</td>
+								</tr>
+								<tbody id="0">
+								</tbody>
+								<tr class="noActive"><td colspan="16">Пенсионый</td></tr>
+								<tbody id="1">
+								</tbody>
+								<tr class="noActive"><td colspan="16">ФСС</td></tr>
+								<tbody id="2">
+								</tbody>
+								<tr class="noActive"><td colspan="16">Петростат</td></tr>
+								<tbody id="3">
+								</tbody>
+							</table>
+						</div>
+			<input type="hidden" name="outCode" id="outCode" value="'.$code.'">
+					</div>
+						  </fieldset>
+
+
+';
+echo '
+<fieldset class="box box-primary">
+				<legend>Таблица выплат</legend>
+<div class="cron-main">
+<table id="pay_table" class="tabRep" style="border: 1px #fff solid;">
+					<tbody><tr style="border-bottom: 1px #fff solid;">
+						<th rowspan="2" style="width: 30%;border-right: 1px #fff solid;text-align:center;">Выплата</th>
+						<th rowspan="2" style="width: 20%;border-right: 1px #fff solid;text-align:center;">Дата</th>
+						<th colspan="4" style="width: 40%;border-right: 1px #fff solid;text-align:center;">Сумма за квартал</th>
+					</tr>
+					<tr>
+						<th style="border-bottom: 1px #fff solid;border-right: 1px #fff solid;text-align:center;">?</th>
+						<th style="border-bottom: 1px #fff solid;border-right: 1px #fff solid;text-align:center;">?</th>
+						<th style="border-bottom: 1px #fff solid;border-right: 1px #fff solid;text-align:center;">?</th>
+						<th style="border-bottom: 1px #fff solid;border-right: 1px #fff solid;text-align:center;">?</th>	
+					</tr>
+				';
+$paypas=$dbbuh->query("SELECT p.name as name, p.date as date, comp.sum1 as sum1, comp.sum2 as sum2, comp.sum3 as sum3, comp.sum4 as sum4 FROM rosgid_paycomp as comp, rosgid_payment as p WHERE comp.orgs_code = '".$code."' AND p.id=comp.id_payment");
+    while($p = $paypas->fetch_assoc()){
+       echo' <tr>
+								<td style="border-bottom: 1px #fff solid;border-right: 1px #fff solid;">'.$p['name'].'</td>
+								<td style="border-bottom: 1px #fff solid;border-right: 1px #fff solid;">'.$p['date'].'</td>
+								<td style="border-bottom: 1px #fff solid;border-right: 1px #fff solid;">'.$p['sum1'].'</td>
+								<td style="border-bottom: 1px #fff solid;border-right: 1px #fff solid;">'.$p['sum2'].'</td>
+								<td style="border-bottom: 1px #fff solid;border-right: 1px #fff solid;">'.$p['sum3'].'</td>
+								<td style="border-bottom: 1px #fff solid;border-right: 1px #fff solid;">'.$p['sum4'].'</td>
+								
+							</tr>';
+
+
+    }
+
+				echo '			
+						</tbody></table></div>
+</fieldset>
+
+';
+echo '</div>'; //закрывает зеленую плашку
+echo '</div>'; //close comp
+echo '</div>'; //close shell
+}
+}
+else {echo '<h1>Информация не доступна!Необходимо авторизоваться!<a href="/login">Войти</a></h1>';}
+[/exec]
