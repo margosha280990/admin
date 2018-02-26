@@ -1,0 +1,82 @@
+
+DBs:
+************************************
+login: garankov/presnyakov
+password: XfSHG2EDxMEcKBHZ/STryNrLzmAZPYXhE
+
+ooo-ip-spb:
+************************************
+login:
+password: ak39ks3oma45
+
+VPN
+*************************************
+\\172.30.99.1\rosgid1
+
+Данные для входа в корпоративный E-mail:
+************************************
+Логин: web@rosgid.ru
+Пароль: Re4la85kama1
+
+
+Yandex Metrica:
+************************************
+ID: f7b0ddb0d25f4e2d9c6657d814672377
+Пароль: 2cbeeb4b9e4f4e28abc4239ffded2afc
+Callback URL: https://ooo-ip-spb.ru/
+
+token: AQAEA7qg0X2gAAR4beKzKWpF6EM5lkXrW_UTM_0
+'expires_in' => int 31476647
+1:P9Y8mbHSf2gDrLdb:I3bKkasE4wI45gchdlHDtzNKigBxHZ-YXxmx8WJditrnhcEf0qCu:ax25E3-DFNz1vtILdy-v0Q
+
+code=43930934
+
+Доступ от az бухгалтерия
+********************************
+fedorsher1234@yandex.ru
+Логин
+--------------------
+newPas123
+Пароль
+
+************************************
+
+
+Доступ к админке:
+http://adaly.ru/wp-admin
+логин: root
+пароль: ^$u6sHKG48&^hLX7yX)NZ#@^
+************************************
+http://komato.ru/login
+Логин:demo@demo.ru
+Пароль:kdjscb73kljsbdc8
+************************************
+
+Логастер лог и пароль от АПИ
+******************************
+l: apiuser418@logaster.com 
+p: Ml5jo7Xm0Lm6rZ
+
+
+Пароль и логин от сайта kvanspb.ru wordpress
+*******************************
+Логин root
+Пароль euro2016a
+
+
+
+kvanshop.ru доступ к серверу
+******************************
+л.root
+п. icvibaufid
+порт:2203
+
+акадэмиа.рф
+******************************
+л. admin
+п. euro2016a
+
+podarok-plus.ru
+**************************
+l web@rosgid.ru
+p retynan1389
