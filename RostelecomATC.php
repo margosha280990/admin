@@ -4,8 +4,8 @@ class RostelecomATC{
 
 	private $url = 'https://api.cloudpbx.rt.ru';
 	private $url_test = 'https://api-test.cloudpbx.rt.ru/';
-	private $client_id = 'EC51140E289220569DAD9AA94A07AD3C';
-	private $client_sign = '90A7635D2ACC3E4B498B7209D0B104DD';
+	private $client_id = '';
+	private $client_sign = '';
 
 	private $curl = null;
 
